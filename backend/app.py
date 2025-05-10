@@ -5,6 +5,10 @@ from database import db
 from dotenv import load_dotenv
 import os
 from utils.util import requires_auth
+from models.eventModels import *
+from models.tagModels import *
+from models.userModels import *
+from routes.userRoutes import user_blueprint
 
 load_dotenv()
 CLIENT_ID = os.getenv('CLIENT_ID')
@@ -23,7 +27,7 @@ def create_app(config_name):
     return app
 
 def blue_print_config(app):
-    pass
+    app.register_blueprint(user_blueprint, url_prefix="/user")
 
 app = create_app('DevelopmentConfig')
 

@@ -51,6 +51,10 @@ def requires_auth(f):
             print(payload)
         except JWTError as e:
             return jsonify({"error": "Invalid token", "details": str(e)}), 401
+        
+        kwargs['payload'] = payload
 
         return f(*args, **kwargs)
     return decorated
+
+
