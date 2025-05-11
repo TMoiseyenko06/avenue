@@ -6,6 +6,7 @@ from flask import request, jsonify
 import requests
 from dotenv import load_dotenv
 import os
+from models.tagModels import Tag
 
 load_dotenv()
 AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
@@ -44,4 +45,10 @@ def update_user_profile(subject,user_data):
     with Session(db.engine) as session:
         with session.begin():
             user = session.query(User).filter_by(subject=subject).first()
-            
+            if 'email' in user_data:
+                user.email = user_data['email']
+            if 'phone' in user_data:
+                user.phone = user_data['phone']
+            if 'tags' in user_data:
+                tags = session.query(Tag).filter(Tag.id.in_(user_data['tags'])).all()
+
