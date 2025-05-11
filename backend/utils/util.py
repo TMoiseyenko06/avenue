@@ -48,11 +48,10 @@ def requires_auth(f):
                 audience=API_AUDIENCE,
                 issuer=f"https://{AUTH0_DOMAIN}/"
             )
-            print(payload)
         except JWTError as e:
             return jsonify({"error": "Invalid token", "details": str(e)}), 401
         
-        kwargs['payload'] = payload
+        kwargs['subject'] = payload['sub']
 
         return f(*args, **kwargs)
     return decorated

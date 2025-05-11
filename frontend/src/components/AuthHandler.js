@@ -17,9 +17,9 @@ const AuthHandler = () => {
             }
           })
           console.log(token)
-          const response = await axios.post('http://localhost:5000/api/auth',{},{
-            headers: {
-              Authorization: `Bearer ${token}`,
+          const result = axios.post("http://localhost:5000/user/create_user",{},{
+            headers:{
+              'Authorization':`Bearer ${token}`
             }
           })
         } catch(err){
