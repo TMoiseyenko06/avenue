@@ -6,5 +6,5 @@ class Tag(Base):
     __tablename__ = "tags"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(db.String(255))
-    description: Mapped[str] = mapped_column(db.String(255))
+    description: Mapped[str] = mapped_column(db.String(255), nullable=True)
     color: Mapped[int] = mapped_column(db.Integer)

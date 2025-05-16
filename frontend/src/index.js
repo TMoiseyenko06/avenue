@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {Auth0Provider} from '@auth0/auth0-react'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN
 const clientid = process.env.REACT_APP_AUTH0_CLIENT_ID

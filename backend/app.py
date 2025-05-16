@@ -8,6 +8,8 @@ from models.eventModels import *
 from models.tagModels import *
 from models.userModels import *
 from routes.userRoutes import user_blueprint
+from routes.tagRoutes import tag_blueprint
+from schema import ma
 
 load_dotenv()
 CLIENT_ID = os.getenv('CLIENT_ID')
@@ -20,6 +22,7 @@ def create_app(config_name):
     app.config.from_object(f'config.{config_name}')
     CORS(app)
     db.init_app(app)
+    ma.init_app(app)
     blue_print_config(app)
     with app.app_context():
         db.create_all()
@@ -27,6 +30,7 @@ def create_app(config_name):
 
 def blue_print_config(app):
     app.register_blueprint(user_blueprint, url_prefix="/user")
+    app.register_blueprint(tag_blueprint, url_prefix="/tag")
 
 app = create_app('DevelopmentConfig')
 
