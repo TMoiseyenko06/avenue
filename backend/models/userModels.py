@@ -15,6 +15,8 @@ class User(Base):
     __tablename__ = 'users'
     id: Mapped[int] = mapped_column(primary_key=True)
     subject: Mapped[str] = mapped_column(db.String(255))
+    firstName: Mapped[str] = mapped_column(db.String(255),nullable=True)
+    lastName: Mapped[str] = mapped_column(db.String(255),nullable=True)
     email: Mapped[str] = mapped_column(db.String(255),nullable=True)
     phone: Mapped[int] = mapped_column(db.Integer,nullable=True)
     tags: Mapped[List[Tag]] = relationship(Tag,secondary=user_tags)

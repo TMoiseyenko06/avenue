@@ -52,3 +52,8 @@ def update_user_profile(subject,user_data):
             if 'tags' in user_data:
                 tags = session.query(Tag).filter(Tag.id.in_(user_data['tags'])).all()
 
+@requires_auth
+def complete_registration(subject,form_data):
+    with Session(db.engine) as session:
+        with session.beign():
+            pass
